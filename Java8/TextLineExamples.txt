@@ -1,0 +1,20 @@
+Map<String,String> x = new Map<>();
+
+String[] a = {"one","two", "three"};
+Arrays.sort(a, (s1,s2) -> s1.length() - s2.length());   
+
+executorService.execute(() -> doSomething());
+
+new Something() {
+  SomeType someSomethod(args) {
+    body
+  }
+}
+
+(args) -> {body}
+
+Method references:
+Static   RefType::staticMethod     (args) -> RefType.staticMethod(args)
+Bound Instance  expr::instMethod   (args) -> expr.instMethod(args)
+Undound Instance  RefType::instMethod  (arg0, rest) -> arg0.instMethod(rest)
+Constructor       ClassName::new   (args) -> new ClassName(args)
