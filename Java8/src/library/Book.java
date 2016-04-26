@@ -51,6 +51,9 @@ public class Book {
 		this.year = year;
 	}
 
+	public Book() {
+	}
+
 	public List<String> getAuthors() {
 		return authors;
 	}
