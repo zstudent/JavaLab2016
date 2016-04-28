@@ -5,6 +5,8 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Practice {
 
@@ -44,9 +46,58 @@ public class Practice {
 		System.out.println(tradersFromCambridge);
 
 		// Query 4: Return a string of all traders’ names sorted alphabetically.
+		
+		String traderNamesList = transactions.stream().map(t -> t.getTrader().getName()).distinct().sorted()
+		.reduce("Traders: ", (t1, t2) -> t1 + ", " + t2);
+		
+		System.out.println(traderNamesList);
+
+		traderNamesList = transactions.stream().map(t -> t.getTrader().getName()).distinct().sorted()
+				.collect(Collectors.joining(", "));
+		
+		System.out.println(traderNamesList);
+		
 		// Query 5: Are there any trader based in Milan?
+		
+		boolean anyFromMilan = transactions.stream().anyMatch(t -> t.getTrader().getCity().equals("Milan"));
+		
+		System.out.println(anyFromMilan);
+		
+		
 		// Query 6: Update all transactions so that the traders from Milan are
 		// set to Cambridge.
+		
+//		transactions.stream().filter(t -> t.getTrader().getCity().equals("Milan"))
+//			.peek(t -> {
+//				t.getTrader().setCity("Cambridge");
+//			}).anyMatch(t -> false);
+//		
+//		System.out.println(transactions);
+//		
+//		transactions.stream().filter(t -> t.getTrader().getCity().equals("Milan"))
+//		.forEach(t -> {
+//			t.getTrader().setCity("Cambridge");
+//		});
+//		
+//		System.out.println(transactions);
+		
+		transactions.stream().filter(t -> t.getTrader().getCity().equals("Cambridge"))
+		.forEach(t -> System.out.println(t.getValue()));
+		
+		transactions.stream().filter(t -> t.getTrader().getCity().equals("Cambridge"))
+		.map(Transaction::getValue).forEach(System.out::println);
+		
+		
 		// Query 7: What's the highest value in all the transactions?
+		
+		transactions.stream().map(Transaction::getValue).reduce((a,b) -> a > b? a : b);
+		Optional<Integer> max = transactions.stream().map(Transaction::getValue).reduce(Integer::max);
+		
+		// Query 8: Find transaction with a minimum value
+		
+		Optional<Transaction> min = transactions.stream().min(comparing(Transaction::getValue));
+		Optional<Transaction> min2 = transactions.stream().reduce((t1,t2) -> t1.getValue() < t2.getValue() ? 
+				t1 : t2);
+		
 	}
 }
