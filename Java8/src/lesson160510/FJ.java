@@ -27,10 +27,10 @@ public class FJ {
 
 	public static void main(String[] args) {
 
-		ForkJoinPool pool = new ForkJoinPool(30);
+		ForkJoinPool pool = new ForkJoinPool();
 		
 		long start = System.nanoTime();
-		Integer result = pool.invoke(new Fibonacci(45));
+		Integer result = pool.invoke(new Fibonacci(50));
 		long stop = System.nanoTime();
 		
 		System.out.println(result);
