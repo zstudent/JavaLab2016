@@ -4,6 +4,13 @@ import java.util.concurrent.CompletableFuture;
 
 public class CombineExample {
 	
+	/*
+	 *   () --{supply}--\
+	 *                   |--{combine}--> () --{accept}--> ()
+	 *   () --{supply}--/
+	 * 
+	 */
+	
 	public static void main(String[] args) {
 		
 		CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> "hello");
